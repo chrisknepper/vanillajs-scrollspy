@@ -69,6 +69,11 @@ export default class VanillaScrollspy {
         (refElement.offsetTop + refElement.clientHeight) > scrollPos
       ) {
         currLink.classList.add('active');
+        if (i === 0) {
+          this.menu.classList.add('first-section-active');
+        } else {
+          this.menu.classList.remove('first-section-active');
+        }
       } else {
         currLink.classList.remove('active');
       }
