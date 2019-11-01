@@ -11,10 +11,11 @@ window.requestAnimFrame = (() =>
 )();
 
 export default class VanillaScrollspy {
-  constructor(menu, speed = 2000, easing = 'easeOutSine') {
+  constructor(menu, speed = 2000, easing = 'easeOutSine', parent = null) {
     this.menu = menu;
     this.speed = speed;
     this.easing = easing;
+    this.parent = parent;
   }
   scrollToY(targetY = 0) {
     const scrollTargetY = targetY;
@@ -69,10 +70,12 @@ export default class VanillaScrollspy {
         (refElement.offsetTop + refElement.clientHeight) > scrollPos
       ) {
         currLink.classList.add('active');
-        if (i === 0) {
-          this.menu.classList.add('first-section-active');
-        } else {
-          this.menu.classList.remove('first-section-active');
+        if (this.parent) {
+          if (i === 0) {
+            this.parent.classList.add('first-section-active');
+          } else {
+            this.parent.classList.remove('first-section-active');
+          }
         }
       } else {
         currLink.classList.remove('active');
